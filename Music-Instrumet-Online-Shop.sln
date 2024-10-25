@@ -3,17 +3,15 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.9.34728.123
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Music-Instrumet-Online-Shop", "Music-Instrumet-Online-Shop\Music-Instrumet-Online-Shop.csproj", "{119A82E9-D4AB-47A3-B086-F8A173761CB5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Music-Instrumet-Online-Shop", "Music-Instrumet-Online-Shop\Music-Instrumet-Online-Shop.csproj", "{119A82E9-D4AB-47A3-B086-F8A173761CB5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicShop.Data.Access", "MusicShop.Data.Access\MusicShop.Data.Access.csproj", "{72426565-FF0E-495C-ABC5-A005606FEBAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicShop.Data.Access", "MusicShop.Data.Access\MusicShop.Data.Access.csproj", "{72426565-FF0E-495C-ABC5-A005606FEBAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicShop.Utility", "MusicShop.Utility\MusicShop.Utility.csproj", "{321AB7C6-DF00-4B0E-AB8A-9B3530D1011C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicShop.Utility", "MusicShop.Utility\MusicShop.Utility.csproj", "{321AB7C6-DF00-4B0E-AB8A-9B3530D1011C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicShop.Models", "MusicShop.Models\MusicShop.Models.csproj", "{98AB8242-63B7-4CBA-9C32-A7BD6C2FE5E9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicShop.Models", "MusicShop.Models\MusicShop.Models.csproj", "{98AB8242-63B7-4CBA-9C32-A7BD6C2FE5E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicShop.Services", "MusicShop.Services\MusicShop.Services.csproj", "{E421E904-8425-4EF5-9D81-4CDB6C77945B}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicShop.Repository", "MusicShop.Repository\MusicShop.Repository.csproj", "{772B14D3-F3B4-4A2E-B566-3B7ABA67DDF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicShop.Repository", "MusicShop.Repository\MusicShop.Repository.csproj", "{772B14D3-F3B4-4A2E-B566-3B7ABA67DDF0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -37,10 +35,6 @@ Global
 		{98AB8242-63B7-4CBA-9C32-A7BD6C2FE5E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{98AB8242-63B7-4CBA-9C32-A7BD6C2FE5E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{98AB8242-63B7-4CBA-9C32-A7BD6C2FE5E9}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E421E904-8425-4EF5-9D81-4CDB6C77945B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E421E904-8425-4EF5-9D81-4CDB6C77945B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E421E904-8425-4EF5-9D81-4CDB6C77945B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E421E904-8425-4EF5-9D81-4CDB6C77945B}.Release|Any CPU.Build.0 = Release|Any CPU
 		{772B14D3-F3B4-4A2E-B566-3B7ABA67DDF0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{772B14D3-F3B4-4A2E-B566-3B7ABA67DDF0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{772B14D3-F3B4-4A2E-B566-3B7ABA67DDF0}.Release|Any CPU.ActiveCfg = Release|Any CPU
