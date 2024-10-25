@@ -1,5 +1,7 @@
 using Microsoft.EntityFrameworkCore;
 using MusicShop.Data.Access.Data;
+using MusicShop.Repository.IRepository;
+using MusicShop.Repository.Rpository;
 
 namespace Music_Instrumet_Online_Shop
 {
@@ -15,6 +17,7 @@ namespace Music_Instrumet_Online_Shop
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();   
 
             var app = builder.Build();
 

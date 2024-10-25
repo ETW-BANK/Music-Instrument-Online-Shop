@@ -24,6 +24,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MusicShop.Data.Access\MusicShop.Data.Access.csproj" />
+    <ProjectReference Include="..\MusicShop.Repository\MusicShop.Repository.csproj" />
   </ItemGroup>
 
 </Project>
