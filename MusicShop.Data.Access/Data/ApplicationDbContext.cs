@@ -19,6 +19,8 @@ namespace MusicShop.Data.Access.Data
         {
 
         }
+
+        //this is category list
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
 
