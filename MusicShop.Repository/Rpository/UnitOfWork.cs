@@ -1,4 +1,5 @@
 ﻿using MusicShop.Data.Access.Data;
+using MusicShop.Models;
 using MusicShop.Repository.IRepository;
 using System;
 using System.Collections.Generic;
@@ -12,14 +13,17 @@ namespace MusicShop.Repository.Rpository
     {
 
         private readonly ApplicationDbContext _context;
-          
+
+		public ICategoryRepository Category { get; private set; }
 
 
-        public UnitOfWork(ApplicationDbContext context)
+
+		public UnitOfWork(ApplicationDbContext context)
         {
             _context = context;
-         
-        }
+			Category = new CategoryRepository(_context);
+
+		}
 
        
         public void Save()
