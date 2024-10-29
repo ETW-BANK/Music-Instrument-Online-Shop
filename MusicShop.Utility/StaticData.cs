@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MusicShop.Utility
 {
-    static class StaticData
+    public static class StaticData
     {
         public const string RoleAdmin = "Admin";
         public const string RoleCustomer = "Customer";
