@@ -27,10 +27,13 @@
   <ItemGroup>
     <ProjectReference Include="..\MusicShop.Data.Access\MusicShop.Data.Access.csproj" />
     <ProjectReference Include="..\MusicShop.Repository\MusicShop.Repository.csproj" />
+    <ProjectReference Include="..\MusicShop.Utility\MusicShop.Utility.csproj" />
+    <ProjectReference Include="..\MusicShop.ViewModels\MusicShop.ViewModels.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="Areas\Identity\" />
+
   </ItemGroup>
 
 </Project>

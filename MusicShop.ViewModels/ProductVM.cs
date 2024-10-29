@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using MusicShop.Models;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace MusicShop.ViewModels
 {
@@ -21,10 +22,7 @@ namespace MusicShop.ViewModels
 
         public decimal Price { get; set; }
 
-
         public int CategoryId { get; set; }
-
-
 
         [ForeignKey("CategoryId")]
 
@@ -33,5 +31,11 @@ namespace MusicShop.ViewModels
 
         [ValidateNever]
         public string? ImageUrl { get; set; }
+
+        public Product Product { get; set; }
+
+        [ValidateNever]
+        public IEnumerable<SelectListItem> CategoryList { get; set; }
+
     }
 }
