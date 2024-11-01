@@ -14,23 +14,7 @@ namespace MusicShop.ViewModels
     public class ProductVM
     {
 
-        [Required]
-        public string Title { get; set; }
-        public string Description { get; set; }
-
-        [Required]
-
-        public decimal Price { get; set; }
-
-        public int CategoryId { get; set; }
-
-        [ForeignKey("CategoryId")]
-
-        [ValidateNever]
-        public Category Category { get; set; }
-
-        [ValidateNever]
-        public string? ImageUrl { get; set; }
+        
 
         public Product Product { get; set; }
 
