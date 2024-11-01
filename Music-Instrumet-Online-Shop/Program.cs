@@ -1,5 +1,7 @@
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using MusicShop.Data.Access.Data;
+using MusicShop.Models;
 using MusicShop.Repository.IRepository;
 using MusicShop.Repository.Rpository;
 
@@ -14,10 +16,10 @@ namespace Music_Instrumet_Online_Shop
             var connectionstring = builder.Configuration.GetConnectionString("MusicShopDb");
             builder.Services.AddDbContext<ApplicationDbContext>(opt=>opt.UseSqlServer(connectionstring));   
 
-
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-            builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();   
+            builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
+            builder.Services.AddIdentity<User, Role>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
             var app = builder.Build();
 
@@ -34,6 +36,7 @@ namespace Music_Instrumet_Online_Shop
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapControllerRoute(
