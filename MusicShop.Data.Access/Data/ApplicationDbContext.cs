@@ -35,16 +35,16 @@ namespace MusicShop.Data.Access.Data
 
             modelBuilder.Entity<Category>().HasData(
 
-                new Category { Id = 1, Name = "String Instruments", DisplayOrder = 1 },
-                 new Category { Id = 2, Name = "Percussion Instruments", DisplayOrder = 2 },
-                  new Category { Id = 3, Name = "Keyboard Instruments", DisplayOrder = 3 },
-                   new Category { Id = 4, Name = "Wind Instruments", DisplayOrder = 4 },
-                    new Category { Id = 5, Name = "Folk & Ethnic Instruments", DisplayOrder = 5 },
-                    new Category { Id = 6, Name = "Electronic Instruments", DisplayOrder = 6 },
-                    new Category { Id = 7, Name = "Recording & Studio Gear", DisplayOrder = 7 },
-                    new Category { Id = 8, Name = "Pro Audio Equipment", DisplayOrder = 8 },
-                    new Category { Id = 9, Name = "Accessories & Gear", DisplayOrder = 9 },
-                     new Category { Id = 10, Name = "Bundles & Deals", DisplayOrder = 10 }
+                new Category { Id = 1, Name = "String Instruments", DisplayOrder = 1, ImageUrl = "/image/string.jpeg" },
+                 new Category { Id = 2, Name = "Percussion Instruments", DisplayOrder = 2, ImageUrl = "/image/Per.jpeg" },
+                  new Category { Id = 3, Name = "Keyboard Instruments", DisplayOrder = 3 , ImageUrl = "/image/key.jpeg" },
+                   new Category { Id = 4, Name = "Wind Instruments", DisplayOrder = 4 , ImageUrl = "/image/win.jpeg" },
+                    new Category { Id = 5, Name = "Folk & Ethnic Instruments", DisplayOrder = 5, ImageUrl = "/image/folk.jpeg" },
+                   
+                    new Category { Id = 6, Name = "Recording & Studio Gear", DisplayOrder = 7, ImageUrl = "/image/rec.jpeg" },
+                    new Category { Id = 7, Name = "Pro Audio Equipment", DisplayOrder = 8, ImageUrl = "/image/pro.jpeg" },
+                    new Category { Id = 8, Name = "Accessories & Gear", DisplayOrder = 9, ImageUrl = "/image/acc.jpeg" },
+                     new Category { Id = 9, Name = "Bundles & Deals", DisplayOrder = 10, ImageUrl = "/image/band.jpeg" }
 
 
 
