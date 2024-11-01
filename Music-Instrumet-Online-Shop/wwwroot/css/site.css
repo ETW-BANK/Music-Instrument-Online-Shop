@@ -10,21 +10,11 @@ body {
     flex-direction: column;
 }
 
-#ProductCard {
-    width: 250px;
-    padding: 10px;
-    border-color: #425F4B !important;
-}
-/* Smaller card image */
 .card-img-top {
     object-fit: cover;
-    height: 150px; /* Reduce the height */
-    width: 100%; /* Maintain the full width of the card */
-    border-radius: 10px; /* Adjust the border radius if needed */
-}
-
-#detail-btn {
-    width: 250px;
+    height: 300px;
+    width: 100%;
+    border-radius: 15px;
 }
 
 .img-equal {
@@ -50,7 +40,6 @@ a.navbar-brand {
     white-space: normal;
     text-align: center;
     word-break: break-all;
-    color: white;
 }
 
 
@@ -483,9 +472,7 @@ bg-success {
     }
 
 
-tr {
-    text-align: center !important;
-}
+
 
 
 .btn-outline-success {
@@ -587,7 +574,6 @@ tr {
     }
 
 
-
 .footer {
     border-top: 1px solid #ffffff;
     position: absolute;
@@ -598,5 +584,4 @@ tr {
     text-align: center;
     padding: 1rem 0;
     background-color: #333;
-    color:white;
 }
