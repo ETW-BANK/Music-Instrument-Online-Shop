@@ -20,6 +20,8 @@ namespace MusicShop.Data.Access.Data
 
         public DbSet<Role> Roles {  get; set; }
 
+        public DbSet<Companies> Companies { get; set; } 
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         {
 
