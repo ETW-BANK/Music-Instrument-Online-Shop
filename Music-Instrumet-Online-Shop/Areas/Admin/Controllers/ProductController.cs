@@ -6,10 +6,9 @@ using MusicShop.Utility;
 using MusicShop.ViewModels;
 using Microsoft.AspNetCore.Mvc.Rendering;
 
-namespace Music_Instrumet_Online_Shop.Controllers
+namespace Music_Instrumet_Online_Shop.Areas.Admin.Controllers
 {
-    //[Area("Admin")]
-    //[Authorize(Roles = StaticData.RoleAdmin)]
+    [Area("Admin")]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
@@ -66,7 +65,7 @@ namespace Music_Instrumet_Online_Shop.Controllers
                 if (file != null)
                 {
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
-                    string productPath = Path.Combine(wwwRootPath, @"images\product");
+                    string productPath = Path.Combine(wwwRootPath, @"image\product");
 
                     if (!string.IsNullOrEmpty(Newproduct.Product.ImageUrl))
                     {
@@ -83,7 +82,7 @@ namespace Music_Instrumet_Online_Shop.Controllers
                         file.CopyTo(filStream);
                     }
 
-                    Newproduct.Product.ImageUrl = @"\images\product\" + fileName;
+                    Newproduct.Product.ImageUrl = @"\image\product\" + fileName;
 
                 }
 
@@ -121,6 +120,8 @@ namespace Music_Instrumet_Online_Shop.Controllers
         [HttpGet]
         public IActionResult GetAll()
         {
+
+           
 
             List<Product> productsList = _unitOfWork.Product.GetAll(includeProperties: "Category").ToList();
 

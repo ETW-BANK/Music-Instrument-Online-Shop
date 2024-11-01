@@ -1,17 +1,17 @@
 ﻿var dataTable;
+
 $(document).ready(function () {
-    loadDataTable(); // Initialize the data table once the document is ready
+    loadDataTable(); 
 });
 
 function loadDataTable() {
     if ($.fn.DataTable.isDataTable('#tblData')) {
-        $('#tblData').DataTable().destroy(); // Destroy the existing DataTable instance
+        $('#tblData').DataTable().destroy(); 
     }
-
 
     dataTable = $('#tblData').DataTable({
         "ajax": {
-            url: '/Company/GetAll', 
+            url: '/admin/company/getall', 
         },
         "columns": [
 
@@ -28,10 +28,10 @@ function loadDataTable() {
                 "render": function (data) {
                     return `
                        <div class="w-75 btn-group" role="group">
-                            <a href="/company/upsert?id=${data}" class="btn btn-primary mx-2">
+                            <a href="/admin/company/upsert?id=${data}" class="btn btn-primary mx-2">
                                 <i class="bi bi-pencil-square"></i>Edit
                             </a>
-                            <a onClick=Delete('/company/delete/${data}') class="btn btn-danger mx-2"><i class="bi bi-trash-fill"></i>Delete</a>
+                            <a onClick=Delete('/admin/company/delete/${data}') class="btn btn-danger mx-2"><i class="bi bi-trash-fill"></i>Delete</a>
                         </div>
                     `;
                 },

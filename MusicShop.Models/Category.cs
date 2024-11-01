@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace MusicShop.Models
 {
@@ -23,7 +24,8 @@ namespace MusicShop.Models
         [Range(1, 100)]
         public int DisplayOrder { get; set; }
         public string ImageUrl { get; set; }
-
+        public int ProductId { get; set; }  
+        [ForeignKey("ProductId")]
         public List<Product> Products { get; set; }
 
 
