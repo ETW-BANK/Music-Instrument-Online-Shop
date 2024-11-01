@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - Music_Instrumet_Online_Shop</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Music_Instrumet_Online_Shop.styles.css" asp-append-version="true" />
 </head>
@@ -31,15 +31,16 @@
                             <a class="nav-link text-light" asp-area="" asp-controller="Category" asp-action="Index">Category List</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Product" asp-action="Index">List Of Products</a>
+                            <a class="nav-link text-light" asp-area="" asp-controller="Product" asp-action="Index">List Of Products</a>
                         </li>
-                    
+                    </ul>
                 </div>
             </div>
         </nav>
     </header>
     <div class="container">
         <main role="main" class="pb-3">
+            <partial name="_Notification" />
             @RenderBody()
         </main>
     </div>
@@ -52,6 +53,17 @@
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <!-- SweetAlert2 -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    <!-- DataTables -->
+    <script src="//cdn.datatables.net/2.1.3/js/dataTables.min.js" asp-append-version="true"></script>
+
+    <!-- TinyMCE -->
+    <script src="https://cdn.tiny.cloud/1/6px0ckipd17qghxkwh3b1ffc41i4a0qhkvvesmqjejcvkbu9/tinymce/7/tinymce.min.js" referrerpolicy="origin"> <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script></script>
+
+    <!-- Toastr -->
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
