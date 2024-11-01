@@ -1,19 +1,17 @@
 ﻿
 var dataTable;
+
 $(document).ready(function () {
-    loadDataTable(); // Initialize the data table once the document is ready
+    loadDataTable(); 
 });
 
 function loadDataTable() {
     if ($.fn.DataTable.isDataTable('#tblData')) {
-        $('#tblData').DataTable().destroy(); // Destroy the existing DataTable instance
+        $('#tblData').DataTable().destroy();
     }
-
     dataTable = $('#tblData').DataTable({
         "ajax": {
-            url: '/Product/GetAll', // Adjust the URL to your controller route
-            type: 'GET',
-            dataSrc: "data"
+            url: '/admin/product/getall', 
         },
         "columns": [
             { data: 'title', "width": "10%" },
@@ -28,9 +26,7 @@ function loadDataTable() {
                             <a href="/admin/product/upsert?id=${data}" class="btn btn-primary mx-2">
                                 <i class="bi bi-pencil-square"></i>Edit
                             </a>
-                            <a onClick=Delete('/admin/product/delete/${data}') class="btn btn-danger mx-2">
-                                <i class="bi bi-trash-fill"></i>Delete
-                            </a>
+                            <a onClick=Delete('/admin/product/delete/${data}') class="btn btn-danger mx-2"><i class="bi bi-trash-fill"></i>Delete</a>
                         </div>
                     `;
                 },

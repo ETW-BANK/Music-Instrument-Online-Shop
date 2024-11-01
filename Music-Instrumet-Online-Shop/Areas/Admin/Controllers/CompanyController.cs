@@ -1,11 +1,16 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MusicShop.Models;
 using MusicShop.Repository.IRepository;
+using MusicShop.Utility;
 
-namespace Music_Instrumet_Online_Shop.Controllers
+namespace Music_Instrumet_Online_Shop.Areas.Admin.Controllers
 {
+    [Area("Admin")]
+    //[Authorize(Roles = StaticData.Role_Admin)]
     public class CompanyController : Controller
     {
+
 
         private readonly IUnitOfWork _unitOfWork;
 
@@ -102,5 +107,7 @@ namespace Music_Instrumet_Online_Shop.Controllers
 
 
         #endregion
+
     }
+
 }

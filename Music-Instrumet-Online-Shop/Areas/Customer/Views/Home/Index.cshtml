@@ -1,0 +1,27 @@
+﻿@model IEnumerable<MusicShop.Models.Category>
+
+
+    <style>
+   img {
+        height: 100px; /* Set the desired image height */
+        object-fit: cover; /* Ensures the image scales and crops appropriately */
+    }
+    </style>
+
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <div class="col-lg-4 col-md-6 col-sm-12 mb-4">
+                <!-- 4 columns for large screens, 6 for medium, full width on small screens -->
+                <div class="card border-0 p-3 shadow border-top border-5 rounded">
+                    <img src="@item.ImageUrl" class="card-img-top rounded img-fluid img-equal" alt="@item.Name" />
+                    <div class="card-body text-center">
+                        <h5 class="card-title">@item.Name</h5>
+                    <a href="@Url.Action("Instruments", new { categoryId = item.Id })" class="btn btn-primary mt-2">View Instruments</a>
+                </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

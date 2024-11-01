@@ -4,6 +4,7 @@ using MusicShop.Data.Access.Data;
 using MusicShop.Models;
 using MusicShop.Repository.IRepository;
 using MusicShop.Repository.Rpository;
+using System.Text.Json.Serialization;
 
 namespace Music_Instrumet_Online_Shop
 {
@@ -14,10 +15,12 @@ namespace Music_Instrumet_Online_Shop
             var builder = WebApplication.CreateBuilder(args);
 
             var connectionstring = builder.Configuration.GetConnectionString("MusicShopDb");
-            builder.Services.AddDbContext<ApplicationDbContext>(opt=>opt.UseSqlServer(connectionstring));   
+            builder.Services.AddDbContext<ApplicationDbContext>(opt=>opt.UseSqlServer(connectionstring));
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+              
+   
             builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
             builder.Services.AddIdentity<User, Role>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
@@ -41,7 +44,7 @@ namespace Music_Instrumet_Online_Shop
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
         }

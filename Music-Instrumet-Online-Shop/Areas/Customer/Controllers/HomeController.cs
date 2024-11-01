@@ -5,14 +5,15 @@ using MusicShop.Repository.IRepository;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
 
-namespace Music_Instrumet_Online_Shop.Controllers
+namespace Music_Instrumet_Online_Shop.Areas.Customer.Controllers
 {
+    [Area("Customer")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
 
         private readonly IUnitOfWork _unitOfWork;
-        public HomeController(ILogger<HomeController> logger,IUnitOfWork unitOfWork)
+        public HomeController(ILogger<HomeController> logger, IUnitOfWork unitOfWork)
         {
             _logger = logger;
             _unitOfWork = unitOfWork;
@@ -20,7 +21,7 @@ namespace Music_Instrumet_Online_Shop.Controllers
 
         public IActionResult Index()
         {
-            IEnumerable<Category> categories=_unitOfWork.Category.GetAll().ToList();
+            IEnumerable<Category> categories = _unitOfWork.Category.GetAll().ToList();
             return View(categories);
         }
 
@@ -29,7 +30,7 @@ namespace Music_Instrumet_Online_Shop.Controllers
             var category = _unitOfWork.Category.GetFirstOrDefault(c => c.Id == categoryId, includeProperties: "Products");
             if (category == null) return NotFound();
 
-            
+
             if (category.Products == null || !category.Products.Any())
             {
                 category.Products = _unitOfWork.Product.GetAll()
@@ -37,7 +38,7 @@ namespace Music_Instrumet_Online_Shop.Controllers
                     .ToList();
             }
 
-            return View(category.Products); 
+            return View(category.Products);
         }
 
 
