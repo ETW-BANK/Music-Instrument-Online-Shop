@@ -1,15 +1,19 @@
 /* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
 for details on configuring this project to bundle and minify static web assets. */
-body {
+body,html {
     background-image: url("/image/bg.jpg");
     background-repeat: no-repeat;
     background-size: cover;
     background-attachment: fixed;
     width: 100%;
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
 }
-
+.container {
+    flex: 1;
+    margin-bottom: 30px;
+}
 .card-img-top {
     object-fit: cover;
     height: 300px;
@@ -51,7 +55,10 @@ a.navbar-brand {
 }
 
 html {
-    font-size: 14px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh; 
+    margin: 0;
 }
 
 @media (min-width: 768px) {
@@ -120,7 +127,8 @@ bg-success {
 
 
 .card {
-    border-color: #425F4B !important;
+    flex: 1; /* Fills available space and pushes footer to the bottom */
+    padding-bottom: 30px;
 }
 
 
@@ -576,12 +584,18 @@ bg-success {
 
 .footer {
     border-top: 1px solid #ffffff;
-    position: absolute;
-    bottom: 0;
-    left: 0;
+
     width: 100%;
-    color: #ffffff;
     text-align: center;
     padding: 1rem 0;
     background-color: #333;
+    color: white;
+ 
+}
+
+.logo {
+    height: 50px;
+    width: 100px;
+    margin-left: 30px;
+    margin-right: 70px;
 }
