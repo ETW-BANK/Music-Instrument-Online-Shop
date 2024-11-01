@@ -8,8 +8,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Music_Instrumet_Online_Shop.Controllers
 {
-    [Area("Admin")]
-    [Authorize(Roles = StaticData.RoleAdmin)]
+    //[Area("Admin")]
+    //[Authorize(Roles = StaticData.RoleAdmin)]
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
