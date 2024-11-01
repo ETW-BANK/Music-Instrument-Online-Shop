@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MusicShop.Data.Access.Data;
 
@@ -11,9 +12,11 @@ using MusicShop.Data.Access.Data;
 namespace MusicShop.Data.Access.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241101193226_imageAddedtocategory")]
+    partial class imageAddedtocategory
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -164,56 +167,56 @@ namespace MusicShop.Data.Access.Migrations
                         {
                             Id = 2,
                             DisplayOrder = 2,
-                            ImageUrl = "/image/Per.jpeg",
+                            ImageUrl = "/images/Per.jpeg",
                             Name = "Percussion Instruments"
                         },
                         new
                         {
                             Id = 3,
                             DisplayOrder = 3,
-                            ImageUrl = "/image/key.jpeg",
+                            ImageUrl = "/images/key.jpeg",
                             Name = "Keyboard Instruments"
                         },
                         new
                         {
                             Id = 4,
                             DisplayOrder = 4,
-                            ImageUrl = "/image/win.jpeg",
+                            ImageUrl = "/images/win.jpeg",
                             Name = "Wind Instruments"
                         },
                         new
                         {
                             Id = 5,
                             DisplayOrder = 5,
-                            ImageUrl = "/image/folk.jpeg",
+                            ImageUrl = "/images/folk.jpeg",
                             Name = "Folk & Ethnic Instruments"
                         },
                         new
                         {
                             Id = 6,
                             DisplayOrder = 7,
-                            ImageUrl = "/image/rec.jpeg",
+                            ImageUrl = "/images/rec.jpeg",
                             Name = "Recording & Studio Gear"
                         },
                         new
                         {
                             Id = 7,
                             DisplayOrder = 8,
-                            ImageUrl = "/image/pro.jpeg",
+                            ImageUrl = "/images/pro.jpeg",
                             Name = "Pro Audio Equipment"
                         },
                         new
                         {
                             Id = 8,
                             DisplayOrder = 9,
-                            ImageUrl = "/image/acc.jpeg",
+                            ImageUrl = "/images/acc.jpeg",
                             Name = "Accessories & Gear"
                         },
                         new
                         {
                             Id = 9,
                             DisplayOrder = 10,
-                            ImageUrl = "/image/band.jpeg",
+                            ImageUrl = "/images/band.jpeg",
                             Name = "Bundles & Deals"
                         });
                 });

@@ -22,6 +22,9 @@ namespace MusicShop.Models
         [DisplayName("Display Order")]
         [Range(1, 100)]
         public int DisplayOrder { get; set; }
+        public string ImageUrl { get; set; }
+
+        public List<Product> Products { get; set; }
 
 
     }
