@@ -32,7 +32,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Areas\Identity\" />
     <Folder Include="wwwroot\image\product\" />
 
   </ItemGroup>

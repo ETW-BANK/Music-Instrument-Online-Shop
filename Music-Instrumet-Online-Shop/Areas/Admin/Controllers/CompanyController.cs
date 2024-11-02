@@ -7,7 +7,7 @@ using MusicShop.Utility;
 namespace Music_Instrumet_Online_Shop.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    //[Authorize(Roles = StaticData.Role_Admin)]
+    [Authorize(Roles = StaticData.RoleAdmin)]
     public class CompanyController : Controller
     {
 

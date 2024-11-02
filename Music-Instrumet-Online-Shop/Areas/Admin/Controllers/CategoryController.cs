@@ -1,11 +1,14 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using MusicShop.Models;
 using MusicShop.Repository.IRepository;
+using MusicShop.Utility;
 
 namespace Music_Instrumet_Online_Shop.Areas.Admin.Controllers
 {
 
     [Area("Admin")]
+    [Authorize(Roles =StaticData.RoleAdmin)]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
