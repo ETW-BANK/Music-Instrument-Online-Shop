@@ -20,7 +20,7 @@ namespace MusicShop.Models
 
         [Required]
 
-        public decimal Price { get; set; }
+        public double Price { get; set; }
 
         public int CategoryId { get; set; }
 
