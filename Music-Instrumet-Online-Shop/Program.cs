@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using MusicShop.Data.Access.Data;
 using MusicShop.Models;
 using MusicShop.Repository.IRepository;
 using MusicShop.Repository.Rpository;
+using MusicShop.Utility;
 using System.Text.Json.Serialization;
 
 namespace Music_Instrumet_Online_Shop
@@ -17,12 +19,24 @@ namespace Music_Instrumet_Online_Shop
             var connectionstring = builder.Configuration.GetConnectionString("MusicShopDb");
             builder.Services.AddDbContext<ApplicationDbContext>(opt=>opt.UseSqlServer(connectionstring));
 
+
+            builder.Services.AddIdentity<IdentityUser,IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+
+
+            builder.Services.ConfigureApplicationCookie(option =>
+            {
+                option.LoginPath = $"/Identity/Account/Login";
+                option.LogoutPath = $"/Identity/Account/Logout";
+                option.AccessDeniedPath = $"/Identity/Account/AccessDenied";
+
+
+            });
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-              
+             builder.Services.AddRazorPages();
    
             builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
-            builder.Services.AddIdentity<User, Role>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+            builder.Services.AddScoped<IEmailSender, EmailSender>();
 
             var app = builder.Build();
 
@@ -36,12 +50,12 @@ namespace Music_Instrumet_Online_Shop
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
-
+            app.MapRazorPages();
             app.UseRouting();
 
             app.UseAuthentication();
             app.UseAuthorization();
-
+           
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");

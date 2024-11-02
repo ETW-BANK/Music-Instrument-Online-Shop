@@ -599,3 +599,7 @@ bg-success {
     margin-left: 30px;
     margin-right: 70px;
 }
+
+.Wrapper {
+    background-color: white;
+}

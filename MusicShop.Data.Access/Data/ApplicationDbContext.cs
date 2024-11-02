@@ -9,16 +9,14 @@ using System.Threading.Tasks;
 
 namespace MusicShop.Data.Access.Data
 {
-    public class ApplicationDbContext : IdentityDbContext<User, Role, string>
+    public class ApplicationDbContext : IdentityDbContext
     {
 
         public DbSet<Category> Categories { get; set; }
 
         public DbSet<Product> Products { get; set; }
 
-        public DbSet<User> Users { get; set; }
-
-        public DbSet<Role> Roles {  get; set; }
+        public DbSet<ApplicationUser> ApplicationUsers { get; set; }
 
         public DbSet<Companies> Companies { get; set; } 
 
