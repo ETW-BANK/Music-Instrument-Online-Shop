@@ -1,9 +1,11 @@
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Music_Instrumet_Online_Shop.Models;
 using MusicShop.Models;
 using MusicShop.Repository.IRepository;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
+using System.Security.Claims;
 
 namespace Music_Instrumet_Online_Shop.Areas.Customer.Controllers
 {
@@ -39,6 +41,46 @@ namespace Music_Instrumet_Online_Shop.Areas.Customer.Controllers
             }
 
             return View(category.Products);
+        }
+
+        public IActionResult Details(int ProductId)
+        {
+            ShoppingCart cart = new()
+            {
+                Product = _unitOfWork.Product.GetFirstOrDefault(u => u.Id == ProductId, includeProperties: "Category"),
+                Count = 1,
+                ProductId = ProductId
+            };
+            return View(cart);
+
+        }
+        [HttpPost]
+        [Authorize]
+        public IActionResult Details(ShoppingCart shoppingCart)
+        {
+          
+            var claimsIdentity=(ClaimsIdentity)User.Identity;
+            var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
+            shoppingCart.ApplicationUserId= userId;
+
+            ShoppingCart cartFromdb = _unitOfWork.ShoppingCart.GetFirstOrDefault(u => u.ApplicationUserId == userId &&
+            u.ProductId == shoppingCart.ProductId);
+          
+            if(cartFromdb != null) 
+            {
+                cartFromdb.Count += shoppingCart.Count;
+                _unitOfWork.ShoppingCart.Update(cartFromdb);  
+            }
+            else
+            {
+                _unitOfWork.ShoppingCart.Add(shoppingCart); 
+            }
+
+            _unitOfWork.ShoppingCart.Add(shoppingCart);
+            _unitOfWork.Save();
+            TempData["success"] = $"{shoppingCart.Count} , Item/Items Added To Shopping Cart Succesfully";
+
+            return RedirectToAction("Index");   
         }
 
 
