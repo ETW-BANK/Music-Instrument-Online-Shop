@@ -38,7 +38,7 @@ namespace MusicShop.Data.Access.Data
 
             modelBuilder.Entity<Category>().HasData(
 
-                new Category { Id = 1, Name = "String Instruments", DisplayOrder = 1, ImageUrl = "/image/string.jpeg" },
+                new Category { Id = 1, Name = "String Instruments", DisplayOrder = 1, ImageUrl = "/image/string.jpg" },
                  new Category { Id = 2, Name = "Percussion Instruments", DisplayOrder = 2, ImageUrl = "/image/Per.jpeg" },
                   new Category { Id = 3, Name = "Keyboard Instruments", DisplayOrder = 3 , ImageUrl = "/image/key.jpeg" },
                    new Category { Id = 4, Name = "Wind Instruments", DisplayOrder = 4 , ImageUrl = "/image/win.jpeg" },

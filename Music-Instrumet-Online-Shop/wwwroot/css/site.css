@@ -14,31 +14,8 @@ body,html {
     flex: 1;
     margin-bottom: 30px;
 }
-.card-img-top {
-    object-fit: cover;
-    height: 300px;
-    width: 100%;
-    border-radius: 15px;
-}
-
-.img-equal {
-    height: 200px;
-}
-
-#index-header {
-    font-family: 'Times New Roman';
-    font-size: 56px;
-}
-
-.divider-text:before,
-.divider-text::after {
-    color: white;
-    content: "";
-    flex: 1;
-    border-bottom: 1px solid #555;
-    margin: auto 0.2rem;
-    box-shadow: 0 -2px;
-}
+/* Please see documentation at https://docs.microsoft.com/aspnet/core/client-side/bundling-and-minification
+for details on configuring this project to bundle and minify static web assets. */
 
 a.navbar-brand {
     white-space: normal;
@@ -55,10 +32,7 @@ a.navbar-brand {
 }
 
 html {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh; 
-    margin: 0;
+    font-size: 14px;
 }
 
 @media (min-width: 768px) {
@@ -127,8 +101,7 @@ bg-success {
 
 
 .card {
-    flex: 1; /* Fills available space and pushes footer to the bottom */
-    padding-bottom: 30px;
+    border-color: #425F4B !important;
 }
 
 
@@ -580,6 +553,8 @@ bg-success {
         background-color: #578553;
         border-color: #578553;
     }
+
+
 
 
 .footer {
