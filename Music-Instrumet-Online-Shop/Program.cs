@@ -6,6 +6,7 @@ using MusicShop.Models;
 using MusicShop.Repository.IRepository;
 using MusicShop.Repository.Rpository;
 using MusicShop.Utility;
+using Stripe;
 using System.Text.Json.Serialization;
 
 namespace Music_Instrumet_Online_Shop
@@ -19,6 +20,7 @@ namespace Music_Instrumet_Online_Shop
             var connectionstring = builder.Configuration.GetConnectionString("MusicShopDb");
             builder.Services.AddDbContext<ApplicationDbContext>(opt=>opt.UseSqlServer(connectionstring));
 
+            builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
 
             builder.Services.AddIdentity<IdentityUser,IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
@@ -29,6 +31,16 @@ namespace Music_Instrumet_Online_Shop
                 option.LogoutPath = $"/Identity/Account/Logout";
                 option.AccessDeniedPath = $"/Identity/Account/AccessDenied";
 
+
+            });
+            //Session Service 
+
+            builder.Services.AddDistributedMemoryCache();
+            builder.Services.AddSession(options => {
+
+                options.IdleTimeout = TimeSpan.FromMinutes(100);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
 
             });
             // Add services to the container.
@@ -50,11 +62,13 @@ namespace Music_Instrumet_Online_Shop
 
             app.UseHttpsRedirection();
             app.UseStaticFiles();
+            StripeConfiguration.ApiKey = builder.Configuration.GetSection("Stripe:SecretKey").Get<string>();
             app.MapRazorPages();
             app.UseRouting();
 
             app.UseAuthentication();
             app.UseAuthorization();
+            app.UseSession();
            
             app.MapControllerRoute(
                 name: "default",
