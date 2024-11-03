@@ -24,5 +24,35 @@ namespace MusicShop.Repository.Repository
         {
             _context.OrderHeaders.Update(orderHeader);  
         }
+        public void UpdateStatus(int id, string orderStatus, string? paymentStatus = null)
+        {
+            var orderFromDb = _context.OrderHeaders.FirstOrDefault(x => x.Id == id);
+
+            if (orderFromDb != null)
+            {
+                orderFromDb.OrderStatus = orderStatus;
+                if (!string.IsNullOrEmpty(paymentStatus))
+                {
+                    orderFromDb.paymentStatus = paymentStatus;
+                }
+            }
+        }
+
+        public void UpdateStripePaymentID(int id, string sessionId, string PaymentIntentId)
+        {
+            var orderFromDb = _context.OrderHeaders.FirstOrDefault(x => x.Id == id);
+
+            if (!string.IsNullOrEmpty(sessionId))
+            {
+                orderFromDb.SessionId = sessionId;
+            }
+            if (!string.IsNullOrEmpty(PaymentIntentId))
+            {
+                orderFromDb.PaymentIntentId = PaymentIntentId;
+                orderFromDb.PaymentDate = DateTime.Now;
+
+            }
+
+        }
     }
 }
