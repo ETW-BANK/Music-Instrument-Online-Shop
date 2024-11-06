@@ -112,11 +112,12 @@
 @section Scripts {
 
     <script>
-        tinymce.init({
-            selector: 'textarea',
-            plugins: 'anchor autolink charmap codesample emoticons   lists   table visualblocks wordcount ',
-            toolbar: 'undo redo | blocks fontfamily fontsize | bold italic underline strikethrough |  align lineheight | numlist bullist indent outdent  ',
-
+        tinyMCE.init({
+            mode: "textareas",
+            theme: "advanced",
+            force_br_newlines: false,
+            force_p_newlines: false,
+            forced_root_block: '',
         });
     </script>
 
