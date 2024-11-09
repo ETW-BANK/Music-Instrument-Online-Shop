@@ -603,6 +603,6 @@ bg-success {
 
 #video {
     height: 45vh;
-    width: 100vw; 
+    width: 70vw; 
     object-fit: cover;
 }
