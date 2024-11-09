@@ -23,6 +23,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\MusicShop.Models\MusicShop.Models.csproj" />
+    <ProjectReference Include="..\MusicShop.Utility\MusicShop.Utility.csproj" />
   </ItemGroup>
 
 </Project>

@@ -12,10 +12,11 @@ namespace Music_Instrumet_Online_Shop.Areas.Admin.Controllers
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-
+       
         public CategoryController(IUnitOfWork unitOfWork)
         {
             _unitOfWork = unitOfWork;
+       
         }
         public IActionResult Index()
         {
@@ -116,5 +117,8 @@ namespace Music_Instrumet_Online_Shop.Areas.Admin.Controllers
             return RedirectToAction("Index");
 
         }
+
+
+
     }
 }

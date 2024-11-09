@@ -2,6 +2,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using MusicShop.Data.Access.Data;
+using MusicShop.Data.Access.Dbinitialaizer;
 using MusicShop.Models;
 using MusicShop.Repository.IRepository;
 using MusicShop.Repository.Rpository;
@@ -49,6 +50,7 @@ namespace Music_Instrumet_Online_Shop
    
             builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
             builder.Services.AddScoped<IEmailSender, EmailSender>();
+            builder.Services.AddScoped<IDbintialaizer,Dbinitializer>();
 
             var app = builder.Build();
 
@@ -69,12 +71,23 @@ namespace Music_Instrumet_Online_Shop
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseSession();
-           
+            SeedDatabase();
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{area=Customer}/{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
+
+            void SeedDatabase()
+            {
+                using (var scope = app.Services.CreateScope())
+                {
+                    var dbInitializer = scope.ServiceProvider.GetRequiredService<IDbintialaizer>();
+
+                    dbInitializer.Initialize();
+                }
+            }
+
         }
     }
 }
