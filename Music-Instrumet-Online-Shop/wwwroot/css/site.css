@@ -569,12 +569,40 @@ bg-success {
 }
 
 .logo {
-    height: 50px;
-    width: 100px;
-    margin-left: 30px;
-    margin-right: 70px;
+    height: 120px;
+    width: 150px;
+    margin-left: 50px;
+   padding-right:50px;
 }
 
 .Wrapper {
     background-color: white;
+}
+
+/*video*/
+
+@media (max-width: 800px) {
+    .showcase,
+    .showcase header {
+        padding: 40px;
+    }
+}
+
+.video-content {
+   /* padding-top: 80px;*/
+    display: flex;
+    align-content: center;
+    flex-direction: column;
+    text-align: center;
+    flex-wrap: wrap;
+    color: red;
+    justify-content: center;
+   /* overflow: hidden;*/
+}
+
+
+#video {
+    height: 45vh;
+    width: 100vw; 
+    object-fit: cover;
 }
