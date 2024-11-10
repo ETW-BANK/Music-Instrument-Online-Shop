@@ -40,10 +40,10 @@ namespace MusicShop.Data.Access.Dbinitialaizer
 
             if (!_roleManager.RoleExistsAsync(StaticData.RoleCustomer).GetAwaiter().GetResult())
             {
-               _roleManager.CreateAsync(new IdentityRole(StaticData.RoleCustomer)).GetAwaiter().GetResult();
+                _roleManager.CreateAsync(new IdentityRole(StaticData.RoleCustomer)).GetAwaiter().GetResult();
                 _roleManager.CreateAsync(new IdentityRole(StaticData.RoleAdmin)).GetAwaiter().GetResult();
                 _roleManager.CreateAsync(new IdentityRole(StaticData.RoleCompany)).GetAwaiter().GetResult();
-               
+
 
                 _userManager.CreateAsync(new ApplicationUser
                 {
@@ -56,7 +56,7 @@ namespace MusicShop.Data.Access.Dbinitialaizer
                     City = "Stockholm"
                 }, "@Admin12345").GetAwaiter().GetResult();
 
-                ApplicationUser user = _applicationDbContext.ApplicationUsers.FirstOrDefault(u => u.Email == "admin@ethiogarments.com");
+                ApplicationUser user = _applicationDbContext.ApplicationUsers.FirstOrDefault(u => u.Email == "admin@404notfound.com");
                 _userManager.AddToRoleAsync(user, StaticData.RoleAdmin).GetAwaiter().GetResult();
             }
 
@@ -64,4 +64,5 @@ namespace MusicShop.Data.Access.Dbinitialaizer
         }
 
     }
+
 }

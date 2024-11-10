@@ -83,8 +83,8 @@
                         <label asp-for="Input.PhoneNumber" class="ms-2 text-muted">Phone Number</label>
                         <span asp-validation-for="Input.PhoneNumber" class="text-danger"></span>
                     </div>
-                 @*    @if (User.IsInRole(StaticData.RoleAdmin))
-                    { *@
+                    @if (User.IsInRole(StaticData.RoleAdmin))
+                    {
                         <div class="form-floating mb-3 col-md-6">
                             <select asp-for="Input.Role" asp-items="@Model.Input.RoleList" class="form-select">
                                 <option disabled selected>---Select Role---</option>
@@ -98,8 +98,8 @@
                             </select>
 
                         </div>
-@* 
-                    } *@
+
+                    }
 
 
                     <div class="col-12">
