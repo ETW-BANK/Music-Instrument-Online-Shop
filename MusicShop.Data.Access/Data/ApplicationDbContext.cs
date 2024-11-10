@@ -44,9 +44,10 @@ namespace MusicShop.Data.Access.Data
                    new Category { Id = 4, Name = "Wind Instruments", DisplayOrder = 4 , ImageUrl = "/image/win.jpg" },
                     new Category { Id = 5, Name = "PA Systems", DisplayOrder = 5, ImageUrl = "/image/pa.jpg" },
                     new Category { Id = 6, Name = "Recording ", DisplayOrder = 7, ImageUrl = "/image/rec.jpg" },
-                    new Category { Id = 7, Name = "Electric", DisplayOrder = 8, ImageUrl = "/image/el.jpg" },
-                    new Category { Id = 8, Name = "Accessories ", DisplayOrder = 9, ImageUrl = "/image/acc.jpg" },
-                     new Category { Id = 9, Name = "DJ Equipments", DisplayOrder = 10, ImageUrl = "/image/dj.jpg" }
+                    new Category { Id = 7, Name = "Electric Guitar", DisplayOrder = 8, ImageUrl = "/image/el.jpg" },
+                       new Category { Id = 8, Name = "Bass Guitar", DisplayOrder = 8, ImageUrl = "/image/bass1.jpg" },
+                    new Category { Id = 9, Name = "Accessories ", DisplayOrder = 9, ImageUrl = "/image/acc.jpg" },
+                     new Category { Id = 10, Name = "DJ Equipments", DisplayOrder = 10, ImageUrl = "/image/dj.jpg" }
 
 
 
