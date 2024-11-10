@@ -66,8 +66,10 @@ namespace Music_Instrumet_Online_Shop.Areas.Customer.Controllers
                 HttpContext.Session.SetInt32(StaticData.SessionCart, _unitOfWork.ShoppingCart
                     .GetAll(u => u.ApplicationUserId == chartfromdb.ApplicationUserId).Count() - 1);
 
+              
+                HttpContext.Session.SetInt32(StaticData.SessionCart,
+                _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == chartfromdb.ApplicationUserId).Count() - 1);
                 _unitOfWork.ShoppingCart.Remove(chartfromdb);
-
             }
             else
             {
@@ -84,10 +86,13 @@ namespace Music_Instrumet_Online_Shop.Areas.Customer.Controllers
             var chartfromdb = _unitOfWork.ShoppingCart.GetFirstOrDefault(u => u.Id == cartId, tracked: true);
             HttpContext.Session.SetInt32(StaticData.SessionCart, _unitOfWork.ShoppingCart
                 .GetAll(u => u.ApplicationUserId == chartfromdb.ApplicationUserId).Count() - 1);
-
+            HttpContext.Session.SetInt32(StaticData.SessionCart,
+            _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == chartfromdb.ApplicationUserId).Count() - 1);
             _unitOfWork.ShoppingCart.Remove(chartfromdb);
+            
 
             _unitOfWork.Save();
+
 
             return RedirectToAction(nameof(Index));
         }
@@ -156,13 +161,15 @@ namespace Music_Instrumet_Online_Shop.Areas.Customer.Controllers
             }
             if (applicationUser.CompanyId.GetValueOrDefault() == 0)
             {
-                ShoppingCartVM.OrderHeader.OrderStatus = StaticData.StatusPending;
+                
                 ShoppingCartVM.OrderHeader.paymentStatus = StaticData.PaymentStatusPending;
+                ShoppingCartVM.OrderHeader.OrderStatus = StaticData.StatusPending;
             }
             else
             {
-                ShoppingCartVM.OrderHeader.OrderStatus = StaticData.StatusApproved;
+              
                 ShoppingCartVM.OrderHeader.paymentStatus = StaticData.PaymentStatusDelayedPayment;
+                ShoppingCartVM.OrderHeader.OrderStatus = StaticData.StatusApproved;
             }
 
             _unitOfWork.OrderHeader.Add(ShoppingCartVM.OrderHeader);
@@ -202,7 +209,7 @@ namespace Music_Instrumet_Online_Shop.Areas.Customer.Controllers
                         PriceData = new SessionLineItemPriceDataOptions
                         {
                             UnitAmount = (long)(item.Product.Price * 100),
-                            Currency = "SEK",
+                            Currency = "sek",
                             ProductData = new SessionLineItemPriceDataProductDataOptions
                             {
                                 Name = item.Product.Title

@@ -131,12 +131,7 @@ namespace Music_Instrumet_Online_Shop.Areas.Identity.Pages.Account
 
         public async Task OnGetAsync(string returnUrl = null)
         {
-            if (!_roleManager.RoleExistsAsync(StaticData.RoleCustomer).GetAwaiter().GetResult())
-            {
-                _roleManager.CreateAsync(new IdentityRole(StaticData.RoleCustomer)).GetAwaiter().GetResult();
-                _roleManager.CreateAsync(new IdentityRole(StaticData.RoleAdmin)).GetAwaiter().GetResult();
-                _roleManager.CreateAsync(new IdentityRole(StaticData.RoleCompany)).GetAwaiter().GetResult();
-            }
+           
 
             Input = new()
             {
@@ -214,7 +209,17 @@ namespace Music_Instrumet_Online_Shop.Areas.Identity.Pages.Account
                     }
                     else
                     {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
+
+                        if(User.IsInRole(StaticData.RoleAdmin))
+                        {
+
+                            TempData["success"] = "New User Created Successfully";
+                           
+                        }
+                        else
+                        {
+                            await _signInManager.SignInAsync(user, isPersistent: false);
+                        }
                         return LocalRedirect(returnUrl);
                     }
                 }

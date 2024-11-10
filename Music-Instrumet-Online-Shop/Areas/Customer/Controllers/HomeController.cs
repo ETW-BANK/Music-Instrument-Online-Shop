@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Music_Instrumet_Online_Shop.Models;
 using MusicShop.Models;
 using MusicShop.Repository.IRepository;
+using MusicShop.Utility;
 using System.Diagnostics;
 using System.Diagnostics.Metrics;
 using System.Security.Claims;
@@ -23,6 +24,14 @@ namespace Music_Instrumet_Online_Shop.Areas.Customer.Controllers
 
         public IActionResult Index()
         {
+           // var claimsIdentity = (ClaimsIdentity)User.Identity;
+           // var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+
+           // if (claim != null)
+           // {
+           //     HttpContext.Session.SetInt32(StaticData.SessionCart,
+           //_unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value).Count());
+           // }
             IEnumerable<Category> categories = _unitOfWork.Category.GetAll().ToList();
             return View(categories);
         }
@@ -69,7 +78,8 @@ namespace Music_Instrumet_Online_Shop.Areas.Customer.Controllers
             if(cartFromdb != null) 
             {
                 cartFromdb.Count += shoppingCart.Count;
-                _unitOfWork.ShoppingCart.Update(cartFromdb);  
+                _unitOfWork.ShoppingCart.Update(cartFromdb);
+                _unitOfWork.Save();
             }
             else
             {
@@ -78,6 +88,9 @@ namespace Music_Instrumet_Online_Shop.Areas.Customer.Controllers
 
             _unitOfWork.ShoppingCart.Add(shoppingCart);
             _unitOfWork.Save();
+            HttpContext.Session.SetInt32(StaticData.SessionCart,
+            _unitOfWork.ShoppingCart.GetAll(u=>u.ApplicationUserId==userId).Count());
+           
             TempData["success"] = $"{shoppingCart.Count} , Item/Items Added To Shopping Cart Succesfully";
 
             return RedirectToAction("Index");   

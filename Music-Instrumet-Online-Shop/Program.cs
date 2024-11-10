@@ -50,7 +50,7 @@ namespace Music_Instrumet_Online_Shop
    
             builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
             builder.Services.AddScoped<IEmailSender, EmailSender>();
-            builder.Services.AddScoped<IDbintialaizer,Dbinitializer>();
+            builder.Services.AddScoped<IDbintialaizer, Dbinitializer>();
 
             var app = builder.Build();
 

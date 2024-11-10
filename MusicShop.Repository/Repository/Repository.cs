@@ -71,8 +71,9 @@ namespace MusicShop.Repository.Rpository
                 }
             }
             return query.FirstOrDefault();
-
         }
+
+    
 
         public void Remove(T item)
         {

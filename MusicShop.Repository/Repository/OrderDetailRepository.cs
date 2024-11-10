@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace MusicShop.Repository.Repository
 {
-    public class OrderDetailRepository:Repository<OrderDetail>,IOrderDetailRepository
+    public class OrderDetailRepository : Repository<OrderDetail>, IOrderDetailRepository
     {
 
         private ApplicationDbContext _context;

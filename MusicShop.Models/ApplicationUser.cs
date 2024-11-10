@@ -20,6 +20,7 @@ namespace MusicShop.Models
         public string? PostalCode { get; set; }
 
         public int? CompanyId { get; set; }
+
         [ForeignKey("CompanyId")]
         [ValidateNever]
         public Companies Companies { get; set; }
