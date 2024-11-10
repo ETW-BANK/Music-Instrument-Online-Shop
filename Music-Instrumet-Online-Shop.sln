@@ -15,7 +15,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicShop.Repository", "Mus
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MusicShop.ViewModels", "MusicShop.ViewModels\MusicShop.ViewModels.csproj", "{93E2D799-31C4-4760-A37D-9408FF021CEB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicShop.UnitTest", "MusicShop.UnitTest\MusicShop.UnitTest.csproj", "{678B385E-1E17-4B88-AD11-2E5383E0B789}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MusicSop.UnitTest", "MusicSop.UnitTest\MusicSop.UnitTest.csproj", "{62D185C5-6269-4663-95D8-572C22689718}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +47,10 @@ Global
 		{93E2D799-31C4-4760-A37D-9408FF021CEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93E2D799-31C4-4760-A37D-9408FF021CEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93E2D799-31C4-4760-A37D-9408FF021CEB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{678B385E-1E17-4B88-AD11-2E5383E0B789}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{678B385E-1E17-4B88-AD11-2E5383E0B789}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{678B385E-1E17-4B88-AD11-2E5383E0B789}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{678B385E-1E17-4B88-AD11-2E5383E0B789}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62D185C5-6269-4663-95D8-572C22689718}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62D185C5-6269-4663-95D8-572C22689718}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62D185C5-6269-4663-95D8-572C22689718}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62D185C5-6269-4663-95D8-572C22689718}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
