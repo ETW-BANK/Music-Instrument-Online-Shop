@@ -23,7 +23,11 @@ namespace MusicShop.Models
 
         [ForeignKey("CompanyId")]
         [ValidateNever]
-        public Companies Companies { get; set; }
+        public Companies? Companies { get; set; }
+
+        [NotMapped]
+
+        public string Role { get; set; }
 
       
     }
