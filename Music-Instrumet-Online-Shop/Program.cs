@@ -19,11 +19,11 @@ namespace Music_Instrumet_Online_Shop
             var builder = WebApplication.CreateBuilder(args);
 
             var connectionstring = builder.Configuration.GetConnectionString("MusicShopDb");
-            builder.Services.AddDbContext<ApplicationDbContext>(opt=>opt.UseSqlServer(connectionstring));
+            builder.Services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlServer(connectionstring));
 
             builder.Services.Configure<StripeSettings>(builder.Configuration.GetSection("Stripe"));
 
-            builder.Services.AddIdentity<IdentityUser,IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationDbContext>().AddDefaultTokenProviders();
 
 
             builder.Services.ConfigureApplicationCookie(option =>
@@ -46,9 +46,9 @@ namespace Music_Instrumet_Online_Shop
             });
             // Add services to the container.
             builder.Services.AddControllersWithViews();
-             builder.Services.AddRazorPages();
-   
-            builder.Services.AddScoped<IUnitOfWork,UnitOfWork>();
+            builder.Services.AddRazorPages();
+
+            builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
             builder.Services.AddScoped<IEmailSender, EmailSender>();
             builder.Services.AddScoped<IDbintialaizer, Dbinitializer>();
 

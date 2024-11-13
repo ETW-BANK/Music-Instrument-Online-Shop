@@ -24,14 +24,14 @@ namespace Music_Instrumet_Online_Shop.Areas.Customer.Controllers
 
         public IActionResult Index()
         {
-           // var claimsIdentity = (ClaimsIdentity)User.Identity;
-           // var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
+            // var claimsIdentity = (ClaimsIdentity)User.Identity;
+            // var claim = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier);
 
-           // if (claim != null)
-           // {
-           //     HttpContext.Session.SetInt32(StaticData.SessionCart,
-           //_unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value).Count());
-           // }
+            // if (claim != null)
+            // {
+            //     HttpContext.Session.SetInt32(StaticData.SessionCart,
+            //_unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == claim.Value).Count());
+            // }
             IEnumerable<Category> categories = _unitOfWork.Category.GetAll().ToList();
             return View(categories);
         }
@@ -67,15 +67,15 @@ namespace Music_Instrumet_Online_Shop.Areas.Customer.Controllers
         [Authorize]
         public IActionResult Details(ShoppingCart shoppingCart)
         {
-          
-            var claimsIdentity=(ClaimsIdentity)User.Identity;
+
+            var claimsIdentity = (ClaimsIdentity)User.Identity;
             var userId = claimsIdentity.FindFirst(ClaimTypes.NameIdentifier).Value;
-            shoppingCart.ApplicationUserId= userId;
+            shoppingCart.ApplicationUserId = userId;
 
             ShoppingCart cartFromdb = _unitOfWork.ShoppingCart.GetFirstOrDefault(u => u.ApplicationUserId == userId &&
             u.ProductId == shoppingCart.ProductId);
-          
-            if(cartFromdb != null) 
+
+            if (cartFromdb != null)
             {
                 cartFromdb.Count += shoppingCart.Count;
                 _unitOfWork.ShoppingCart.Update(cartFromdb);
@@ -83,17 +83,17 @@ namespace Music_Instrumet_Online_Shop.Areas.Customer.Controllers
             }
             else
             {
-                _unitOfWork.ShoppingCart.Add(shoppingCart); 
+                _unitOfWork.ShoppingCart.Add(shoppingCart);
             }
 
             _unitOfWork.ShoppingCart.Add(shoppingCart);
             _unitOfWork.Save();
             HttpContext.Session.SetInt32(StaticData.SessionCart,
-            _unitOfWork.ShoppingCart.GetAll(u=>u.ApplicationUserId==userId).Count());
-           
+            _unitOfWork.ShoppingCart.GetAll(u => u.ApplicationUserId == userId).Count());
+
             TempData["success"] = $"{shoppingCart.Count} , Item/Items Added To Shopping Cart Succesfully";
 
-            return RedirectToAction("Index");   
+            return RedirectToAction("Index");
         }
 
 
