@@ -92,17 +92,18 @@ namespace Music_Instrumet_Online_Shop.Areas.Admin.Controllers
         [HttpDelete]
         public IActionResult Delete(int? id)
         {
-            var companytodelete = _unitOfWork.Company.GetFirstOrDefault(u => u.Id == id);
+            var companyToDelete = _unitOfWork.Company.GetFirstOrDefault(u => u.Id == id);
 
-            if (companytodelete == null)
+            if (companyToDelete == null)
             {
-                return Json(new { success = false, message = "Faild to delete company" });
+                return Json(new { success = false, message = "Failed to delete company" });
             }
 
-            _unitOfWork.Company.Remove(companytodelete);
+            _unitOfWork.Company.Remove(companyToDelete);
             _unitOfWork.Save();
 
             return Json(new { success = true, message = "Company deleted Successfully" });
+
         }
 
 
