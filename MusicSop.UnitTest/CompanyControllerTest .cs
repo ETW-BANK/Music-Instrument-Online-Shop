@@ -1,15 +1,14 @@
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
-using Microsoft.DotNet.MSIdentity.Shared;
 using Moq;
 using Music_Instrumet_Online_Shop.Areas.Admin.Controllers;
 using MusicShop.Models;
 using MusicShop.Repository.IRepository;
 using MusicShop.Repository.Repository.IRepository;
-using Newtonsoft.Json.Linq;
+
 using System.Linq.Expressions;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+
 
 
 namespace MusicSop.UnitTest
@@ -26,38 +25,24 @@ namespace MusicSop.UnitTest
         public void TestInitialize()
         {
             //Arrange
-
             _mockCompanyyRepository = new Mock<ICompanyRepository>();
-
-
             _mockUnitOfWork = new Mock<IUnitOfWork>();
-
-
             _companyList = new List<Companies>
             {
                 new Companies { Id = 1, Name = "Lukas",StreetAddress=null,City=null,State=null,PostalCode=null, Country=null,Email=null,PhoneNumber=null },
                 new Companies { Id = 2, Name = "Chas",StreetAddress=null,City=null,State=null,PostalCode=null, Country=null,Email=null,PhoneNumber=null },
             };
-
-
             _mockCompanyyRepository.Setup(repo => repo.GetAll(null, null)).Returns(_companyList);
-
-
             _mockUnitOfWork.Setup(uow => uow.Company).Returns(_mockCompanyyRepository.Object);
-
-
             _companyController = new CompanyController(_mockUnitOfWork.Object);
-
             _companyController.TempData = new TempDataDictionary(new DefaultHttpContext(), Mock.Of<ITempDataProvider>());
         }
 
         [TestMethod]
         public void Get_All_Companies_From_The_DataBase()
         {
-
             // Act
             var result = _companyController.Index() as ViewResult;
-
             // Assert
             Assert.IsNotNull(result);
             Assert.IsInstanceOfType(result.Model, typeof(List<Companies>));
@@ -65,18 +50,14 @@ namespace MusicSop.UnitTest
             Assert.AreEqual(2, companies.Count);
             Assert.AreEqual("Lukas", companies[0].Name);
             Assert.AreEqual("Chas", companies[1].Name);
-
         }
-
         [TestMethod]
         public void Update_Company_When_Valid_Model()
         {
             // Arrange
             var newComapny = new Companies { Id = 1, Name = "Lukas", StreetAddress = null, City = null, State = null, PostalCode = null, Country = null, Email = null, PhoneNumber = null };
-
             // Act
             var result = _companyController.Upsert(newComapny) as RedirectToActionResult;
-
             // Assert
             _mockUnitOfWork.Verify(uow => uow.Company.Upadate(newComapny), Times.Once());
             _mockUnitOfWork.Verify(uow => uow.Save(), Times.Once);
@@ -89,7 +70,6 @@ namespace MusicSop.UnitTest
         {
             // Arrange
             var newComapny = new Companies { Id = 0, Name = "Lukas", StreetAddress = null, City = null, State = null, PostalCode = null, Country = null, Email = null, PhoneNumber = null };
-
             // Act
             var result = _companyController.Upsert(newComapny) as RedirectToActionResult;
 
@@ -106,7 +86,6 @@ namespace MusicSop.UnitTest
             // Arrange
             int validCompanyId = 1;
 
-          
             _mockUnitOfWork.Setup(u => u.Company.GetFirstOrDefault(It.IsAny<Expression<Func<Companies, bool>>>(), null, false))
                 .Returns(new Companies { Id = validCompanyId });
 
@@ -114,16 +93,12 @@ namespace MusicSop.UnitTest
             _mockUnitOfWork.Setup(u => u.Save());
 
             //Act
-
             var result = _companyController.Delete(validCompanyId) as JsonResult;
 
             // Assert
             Assert.IsNotNull(result, "Result should not be null");
             Assert.IsNotNull(result.Value, "Result.Value should not be null");
 
-
-
-        
         }
         [TestMethod]
         public void Delete_Returns_Json_When_Invalid_Company()
@@ -131,7 +106,6 @@ namespace MusicSop.UnitTest
             // Arrange
             int invalidCompanyId = 999;
 
-          
             _mockUnitOfWork.Setup(u => u.Company.GetFirstOrDefault(It.IsAny<Expression<Func<Companies, bool>>>(), null, false))
                 .Returns(new Companies { Id = invalidCompanyId });
 
@@ -141,10 +115,7 @@ namespace MusicSop.UnitTest
             // Assert
             Assert.IsNotNull(result, "Result should not be null");
             Assert.IsNotNull(result.Value, "Result.Value should not be null");
-
-           
   
-          
         }
     }
 
