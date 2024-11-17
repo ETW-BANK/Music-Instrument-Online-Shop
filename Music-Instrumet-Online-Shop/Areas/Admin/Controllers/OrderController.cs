@@ -73,8 +73,6 @@ namespace Music_Instrumet_Online_Shop.Areas.Admin.Controllers
         }
 
 
-
-
         [HttpPost]
         [Authorize(Roles = StaticData.RoleAdmin)]
 
@@ -151,11 +149,11 @@ namespace Music_Instrumet_Online_Shop.Areas.Admin.Controllers
             OrderVM.OrderDetail = _unitOfWork.OrderDetail
                 .GetAll(u => u.OrderHeaderId == OrderVM.OrderHeader.Id, includeProperties: "Product");
 
-            // Check if OrderDetail is populated
+           
             if (OrderVM.OrderDetail == null || !OrderVM.OrderDetail.Any())
             {
                 ModelState.AddModelError("", "No order details found.");
-                return View(OrderVM); // Return to the view with an error
+                return View(OrderVM); 
             }
 
             // Stripe logic
@@ -174,7 +172,7 @@ namespace Music_Instrumet_Online_Shop.Areas.Admin.Controllers
                 {
                     PriceData = new SessionLineItemPriceDataOptions
                     {
-                        UnitAmount = (long)(item.Price * 100), // $20.50 => 2050
+                        UnitAmount = (long)(item.Price * 100), 
                         Currency = "usd",
                         ProductData = new SessionLineItemPriceDataProductDataOptions
                         {
