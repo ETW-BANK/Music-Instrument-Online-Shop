@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using MusicShop.Models;
 using MusicShop.Repository.IRepository;
 using MusicShop.Utility;
+using MusicShop.ViewModels;
 
 namespace Music_Instrumet_Online_Shop.Areas.Admin.Controllers
 {
@@ -12,11 +13,13 @@ namespace Music_Instrumet_Online_Shop.Areas.Admin.Controllers
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unitOfWork;
-       
-        public CategoryController(IUnitOfWork unitOfWork)
+        private readonly IWebHostEnvironment _webHostEnvironment;
+
+        public CategoryController(IUnitOfWork unitOfWork, IWebHostEnvironment webHostEnvironment)
         {
+
             _unitOfWork = unitOfWork;
-       
+            _webHostEnvironment = webHostEnvironment;
         }
         public IActionResult Index()
         {
@@ -24,62 +27,82 @@ namespace Music_Instrumet_Online_Shop.Areas.Admin.Controllers
             return View(objCategoryList);
         }
 
-        public IActionResult Create()
+        public IActionResult Upsert(int? id)
         {
-            return View();
-        }
-        [HttpPost]
-        public IActionResult Create(Category obj)
-        {
-            if (obj.Name == obj.DisplayOrder.ToString())
+            CategoryVM categoryVM = new()
             {
+                Category = new Category()
+            };
 
-                ModelState.AddModelError("name", "The Display Order Can't Match The Name");
-
+            if(id==null || id == 0)
+            {
+                return View(categoryVM);
             }
-            if (ModelState.IsValid)
+            else
             {
-                _unitOfWork.Category.Add(obj);
-                _unitOfWork.Save();
-                TempData["success"] = "Category Created successfully";
-                return RedirectToAction("Index");
+                categoryVM.Category=_unitOfWork.Category.GetFirstOrDefault(u=>u.Id==id);   
+                return View(categoryVM);    
             }
 
-            return View();
-        }
-
-        public IActionResult Edit(int? id)
-        {
-            if (id == null || id == 0)
-            {
-                return NotFound();
-            }
-
-            Category? objToEdit = _unitOfWork.Category.GetFirstOrDefault(u => u.Id == id);
-
-            if (objToEdit == null)
-            {
-                return NotFound();
-            }
-
-            return View(objToEdit);
         }
 
         [HttpPost]
-        public IActionResult Edit(Category obj)
+        public IActionResult Upsert(CategoryVM categoryVM, IFormFile? file)
         {
-
-
             if (ModelState.IsValid)
             {
-                _unitOfWork.Category.Update(obj);
+                string wwwRootPath = _webHostEnvironment.WebRootPath;
+
+                if (file != null)
+                {
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                    string categoryPath = Path.Combine(wwwRootPath, "image", "category");
+
+                 
+                    if (!Directory.Exists(categoryPath))
+                    {
+                        Directory.CreateDirectory(categoryPath);
+                    }
+                  
+                    if (!string.IsNullOrEmpty(categoryVM.Category.ImageUrl))
+                    {
+                        var oldImagePath = Path.Combine(wwwRootPath, categoryVM.Category.ImageUrl.TrimStart('/').Replace("/", "\\"));
+                        if (System.IO.File.Exists(oldImagePath))
+                        {
+                            System.IO.File.Delete(oldImagePath);
+                        }
+                    }
+
+                
+                    using (var fileStream = new FileStream(Path.Combine(categoryPath, fileName), FileMode.Create))
+                    {
+                        file.CopyTo(fileStream);
+                    }
+
+                   
+                    categoryVM.Category.ImageUrl = $"/image/category/{fileName}";
+                }
+
+                // Add or update the category
+                if (categoryVM.Category.Id == 0)
+                {
+                    _unitOfWork.Category.Add(categoryVM.Category);
+                }
+                else
+                {
+                    _unitOfWork.Category.Update(categoryVM.Category);
+                }
+
                 _unitOfWork.Save();
-                TempData["success"] = "Category Updated successfully";
+                TempData["success"] = "Category Created Successfully";
                 return RedirectToAction("Index");
             }
 
-            return View();
+            return View(categoryVM);
         }
+
+
+
 
         public IActionResult Delete(int? id)
         {

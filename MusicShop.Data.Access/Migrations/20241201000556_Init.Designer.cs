@@ -12,8 +12,8 @@ using MusicShop.Data.Access.Data;
 namespace MusicShop.Data.Access.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20241102033045_PrductPriceSettodouble")]
-    partial class PrductPriceSettodouble
+    [Migration("20241201000556_Init")]
+    partial class Init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -244,7 +244,6 @@ namespace MusicShop.Data.Access.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -258,80 +257,6 @@ namespace MusicShop.Data.Access.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DisplayOrder = 1,
-                            ImageUrl = "/image/string.jpeg",
-                            Name = "String Instruments",
-                            ProductId = 0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            DisplayOrder = 2,
-                            ImageUrl = "/image/Per.jpeg",
-                            Name = "Percussion Instruments",
-                            ProductId = 0
-                        },
-                        new
-                        {
-                            Id = 3,
-                            DisplayOrder = 3,
-                            ImageUrl = "/image/key.jpeg",
-                            Name = "Keyboard Instruments",
-                            ProductId = 0
-                        },
-                        new
-                        {
-                            Id = 4,
-                            DisplayOrder = 4,
-                            ImageUrl = "/image/win.jpeg",
-                            Name = "Wind Instruments",
-                            ProductId = 0
-                        },
-                        new
-                        {
-                            Id = 5,
-                            DisplayOrder = 5,
-                            ImageUrl = "/image/folk.jpeg",
-                            Name = "Folk & Ethnic Instruments",
-                            ProductId = 0
-                        },
-                        new
-                        {
-                            Id = 6,
-                            DisplayOrder = 7,
-                            ImageUrl = "/image/rec.jpeg",
-                            Name = "Recording & Studio Gear",
-                            ProductId = 0
-                        },
-                        new
-                        {
-                            Id = 7,
-                            DisplayOrder = 8,
-                            ImageUrl = "/image/pro.jpeg",
-                            Name = "Pro Audio Equipment",
-                            ProductId = 0
-                        },
-                        new
-                        {
-                            Id = 8,
-                            DisplayOrder = 9,
-                            ImageUrl = "/image/acc.jpeg",
-                            Name = "Accessories & Gear",
-                            ProductId = 0
-                        },
-                        new
-                        {
-                            Id = 9,
-                            DisplayOrder = 10,
-                            ImageUrl = "/image/band.jpeg",
-                            Name = "Bundles & Deals",
-                            ProductId = 0
-                        });
                 });
 
             modelBuilder.Entity("MusicShop.Models.Companies", b =>
@@ -370,6 +295,111 @@ namespace MusicShop.Data.Access.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Companies");
+                });
+
+            modelBuilder.Entity("MusicShop.Models.OrderDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("Count")
+                        .HasColumnType("int");
+
+                    b.Property<int>("OrderHeaderId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderHeaderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderDetails");
+                });
+
+            modelBuilder.Entity("MusicShop.Models.OrderHeader", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("ApplicationUserId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Carrier")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("OrderDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("OrderStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<double>("OrderTotal")
+                        .HasColumnType("float");
+
+                    b.Property<DateTime>("PaymentDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateOnly>("PaymentDueDate")
+                        .HasColumnType("date");
+
+                    b.Property<string>("PaymentIntentId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PostalCode")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("SessionId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("ShippingDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("StreetAddress")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("TrackingNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("paymentStatus")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.ToTable("OrderHeaders");
                 });
 
             modelBuilder.Entity("MusicShop.Models.Product", b =>
@@ -513,6 +543,36 @@ namespace MusicShop.Data.Access.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("MusicShop.Models.OrderDetail", b =>
+                {
+                    b.HasOne("MusicShop.Models.OrderHeader", "OrderHeader")
+                        .WithMany()
+                        .HasForeignKey("OrderHeaderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("MusicShop.Models.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("OrderHeader");
+
+                    b.Navigation("Product");
+                });
+
+            modelBuilder.Entity("MusicShop.Models.OrderHeader", b =>
+                {
+                    b.HasOne("MusicShop.Models.ApplicationUser", "ApplicationUser")
+                        .WithMany()
+                        .HasForeignKey("ApplicationUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ApplicationUser");
                 });
 
             modelBuilder.Entity("MusicShop.Models.Product", b =>

@@ -241,7 +241,6 @@ namespace MusicShop.Data.Access.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("ImageUrl")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
@@ -255,88 +254,6 @@ namespace MusicShop.Data.Access.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DisplayOrder = 1,
-                            ImageUrl = "/image/string.jpg",
-                            Name = "String Instruments",
-                            ProductId = 0
-                        },
-                        new
-                        {
-                            Id = 2,
-                            DisplayOrder = 2,
-                            ImageUrl = "/image/Per.jpg",
-                            Name = "Percussion Instruments",
-                            ProductId = 0
-                        },
-                        new
-                        {
-                            Id = 3,
-                            DisplayOrder = 3,
-                            ImageUrl = "/image/key.jpg",
-                            Name = "Keyboard Instruments",
-                            ProductId = 0
-                        },
-                        new
-                        {
-                            Id = 4,
-                            DisplayOrder = 4,
-                            ImageUrl = "/image/win.jpg",
-                            Name = "Wind Instruments",
-                            ProductId = 0
-                        },
-                        new
-                        {
-                            Id = 5,
-                            DisplayOrder = 5,
-                            ImageUrl = "/image/pa.jpg",
-                            Name = "PA Systems",
-                            ProductId = 0
-                        },
-                        new
-                        {
-                            Id = 6,
-                            DisplayOrder = 7,
-                            ImageUrl = "/image/rec.jpg",
-                            Name = "Recording ",
-                            ProductId = 0
-                        },
-                        new
-                        {
-                            Id = 7,
-                            DisplayOrder = 8,
-                            ImageUrl = "/image/el.jpg",
-                            Name = "Electric Guitar",
-                            ProductId = 0
-                        },
-                        new
-                        {
-                            Id = 8,
-                            DisplayOrder = 8,
-                            ImageUrl = "/image/bass1.jpg",
-                            Name = "Bass Guitar",
-                            ProductId = 0
-                        },
-                        new
-                        {
-                            Id = 9,
-                            DisplayOrder = 9,
-                            ImageUrl = "/image/acc.jpg",
-                            Name = "Accessories ",
-                            ProductId = 0
-                        },
-                        new
-                        {
-                            Id = 10,
-                            DisplayOrder = 10,
-                            ImageUrl = "/image/dj.jpg",
-                            Name = "DJ Equipments",
-                            ProductId = 0
-                        });
                 });
 
             modelBuilder.Entity("MusicShop.Models.Companies", b =>

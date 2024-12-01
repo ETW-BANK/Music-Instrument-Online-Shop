@@ -40,6 +40,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="wwwroot\image\category\" />
     <Folder Include="wwwroot\image\product\" />
 
   </ItemGroup>
