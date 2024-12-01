@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "mssql5": {
+      "serviceConnectorResourceId": "/subscriptions/[parameters('subscriptionId')]/resourcegroups/[parameters('resourceGroupName')]/providers/Microsoft.Web/sites/Music-Instrumet-Online-Shop20241201070530/providers/Microsoft.ServiceLinker/linkers/ConnectionStringsMusicdb_30E8E02C9D",
+      "secretStore": "AzureAppSettings",
+      "resourceId": "/subscriptions/[parameters('subscriptionId')]/resourceGroups/[parameters('resourceGroupName')]/providers/Microsoft.Sql/servers/music-instrumet-online-shopdbserver/databases/Music-Instrumet-Online-Shop_db",
+      "type": "mssql.azure",
+      "connectionId": "ConnectionStrings:Musicdb"
+    }
+  }
+}
