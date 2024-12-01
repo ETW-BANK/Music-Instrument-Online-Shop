@@ -16,7 +16,18 @@ namespace ClothShop.DataAccess.Repository
 
     public void Upadate(Product product)
     {
-      _context.Products.Update(product);
+      var objFromdb=_context.Products.FirstOrDefault(c=>c.Id == product.Id);    
+        if (objFromdb != null)
+            {
+                objFromdb.Title = product.Title;
+                objFromdb.Description = product.Description;
+                objFromdb.Price = product.Price;
+                objFromdb.CategoryId = product.CategoryId;
+                if(product.ImageUrl != null)
+                {
+                    objFromdb.ImageUrl = product.ImageUrl;  
+                }
+            }
     }
   }
 }

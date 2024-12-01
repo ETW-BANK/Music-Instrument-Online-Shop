@@ -58,12 +58,7 @@ namespace Music_Instrumet_Online_Shop.Areas.Admin.Controllers
                     string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
                     string categoryPath = Path.Combine(wwwRootPath, "image", "category");
 
-                 
-                    if (!Directory.Exists(categoryPath))
-                    {
-                        Directory.CreateDirectory(categoryPath);
-                    }
-                  
+
                     if (!string.IsNullOrEmpty(categoryVM.Category.ImageUrl))
                     {
                         var oldImagePath = Path.Combine(wwwRootPath, categoryVM.Category.ImageUrl.TrimStart('/').Replace("/", "\\"));
@@ -72,8 +67,7 @@ namespace Music_Instrumet_Online_Shop.Areas.Admin.Controllers
                             System.IO.File.Delete(oldImagePath);
                         }
                     }
-
-                
+                                    
                     using (var fileStream = new FileStream(Path.Combine(categoryPath, fileName), FileMode.Create))
                     {
                         file.CopyTo(fileStream);
@@ -83,7 +77,6 @@ namespace Music_Instrumet_Online_Shop.Areas.Admin.Controllers
                     categoryVM.Category.ImageUrl = $"/image/category/{fileName}";
                 }
 
-                // Add or update the category
                 if (categoryVM.Category.Id == 0)
                 {
                     _unitOfWork.Category.Add(categoryVM.Category);

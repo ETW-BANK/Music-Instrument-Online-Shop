@@ -21,7 +21,18 @@ namespace MusicShop.Repository.Rpository
 
 		public void Update(Category category)
 		{
-			_context.Categories.Update(category);
+			var objFromDb = _context.Categories.FirstOrDefault(c => c.Id == category.Id);
+
+			if (objFromDb != null)
+			{
+				objFromDb.Name = category.Name;
+				objFromDb.DisplayOrder = category.DisplayOrder;
+				if(category.ImageUrl != null)
+				{
+					objFromDb.ImageUrl = category.ImageUrl;
+				}
+			}
+	
 		}
 	}
 }
